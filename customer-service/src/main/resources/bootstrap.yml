@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: order-service
+  config-client:
+    enabled: false
+kubernetes:
+  client:
+    enabled: true
+    namespace: default
+    secure: true
+    discovery:
+      includes:
+        - ordersvc

@@ -1,0 +1,7 @@
+micronaut:
+  server:
+    port: 8081
+  security:
+    enabled: false
+  application:
+    name: order-service

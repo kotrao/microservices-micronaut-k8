@@ -1,0 +1,9 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  artifacts:
+    - image: micronauttest/ordersvc
+      context: .
+      jib: {}
+  tagPolicy:
+    gitCommit: {}
