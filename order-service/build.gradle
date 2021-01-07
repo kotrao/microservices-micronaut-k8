@@ -1,23 +1,21 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id("groovy")
     id("io.micronaut.application") version "1.2.0"
     id("com.google.cloud.tools.jib") version "2.6.0"
 }
 
-version "0.1"
-group "io.apptor"
-
 repositories {
     mavenCentral()
     jcenter()
+    maven { url "https://oss.jfrog.org/oss-snapshot-local" }
 }
 
 micronaut {
-    runtime "netty"
-    testRuntime "junit5"
+    runtime("netty")
+    testRuntime("junit5")
     processing {
-        incremental true
-        annotations "io.apptor.*"
+        incremental(true)
+        annotations("io.apptor.*")
     }
 }
 
@@ -26,26 +24,28 @@ dependencies {
     implementation("io.micronaut:micronaut-runtime")
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-management")
+    //implementation project(':kubernetes-discovery-client')
+    implementation("io.micronaut.kubernetes:micronaut-kubernetes-discovery-client:2.1.1.BUILD-SNAPSHOT")
+
     runtimeOnly("ch.qos.logback:logback-classic")
-    annotationProcessor("io.micronaut.security:micronaut-security-annotations")
-    implementation("io.micronaut.security:micronaut-security")
-    implementation("io.micronaut.security:micronaut-security-jwt")
-
+    //testCompile project(":test-utils")
 }
 
-mainClassName = "io.apptor.Application"
-java {
-    sourceCompatibility = JavaVersion.toVersion('11')
-    targetCompatibility = JavaVersion.toVersion('11')
+application {
+    mainClass.set("io.apptor.Application")
 }
 
+tasks {
+    dockerBuild {
+        images = ['micronauttest/ordersvc']
+    }
+}
 jib {
+    from {
+        image = "openjdk:15-alpine"
+    }
     to {
         image = "micronauttest/ordersvc"
     }
-    container {
-        jvmFlags = ['-Djdk.tls.client.protocols=TLSv1.2']
-    }
 }
-
-
