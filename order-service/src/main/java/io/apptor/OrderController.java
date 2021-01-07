@@ -2,8 +2,6 @@ package io.apptor;
 
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.security.annotation.Secured;
-import io.micronaut.security.rules.SecurityRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +18,6 @@ public class OrderController {
         this.repository = repository;
     }
     @Get("/by-customer/{customerId}")
-    @Secured(SecurityRule.IS_ANONYMOUS)
     public List<Order> findByCustId(int customerId) {
 
         List<Order> ret =  this.repository.findOrdersByCustId(customerId);

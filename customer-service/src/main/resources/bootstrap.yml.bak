@@ -2,7 +2,7 @@ micronaut:
   application:
     name: order-service
   config-client:
-    enabled: false
+    enabled: true
 kubernetes:
   client:
     enabled: true
