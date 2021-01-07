@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cystomersvc-deployment
+  name: customersvc-deployment
   labels:
     app: customersvc
 spec:

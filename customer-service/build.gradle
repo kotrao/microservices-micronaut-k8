@@ -16,7 +16,7 @@ micronaut {
     testRuntime("spock2")
     processing {
         incremental(true)
-        annotations("micronaut.client.*")
+        annotations("io.apptor.*")
     }
 }
 
@@ -30,15 +30,24 @@ dependencies {
     implementation("io.micronaut.kubernetes:micronaut-kubernetes-discovery-client:2.1.1.BUILD-SNAPSHOT")
 
     runtimeOnly("ch.qos.logback:logback-classic")
-    testCompile project(":test-utils")
+    //testCompile project(":test-utils")
 }
 
 application {
-    mainClass.set("micronaut.client.Application")
+    mainClass.set("io.apptor.Application")
 }
 
 tasks {
     dockerBuild {
-        images = ['micronaut-kubernetes-example-client']
+        images = ['micronauttest/customersvc']
     }
 }
+jib {
+    from {
+        image = "openjdk:15-alpine"
+    }
+    to {
+        image = "micronauttest/customersvc"
+    }
+}
+
