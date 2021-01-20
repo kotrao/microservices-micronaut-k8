@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: customersvc-deployment
+  namespace: test
   labels:
     app: customersvc
 spec:
@@ -20,11 +21,13 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
+      serviceAccountName: test-sa
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: customersvc
+  namespace: test
 spec:
   type: NodePort
   selector:

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ordersvc-deployment
+  namespace: test
   labels:
     app: ordersvc
 spec:
@@ -20,11 +21,13 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8081
+      serviceAccountName: test-sa
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ordersvc
+  namespace: test
 spec:
   type: NodePort
   selector:
