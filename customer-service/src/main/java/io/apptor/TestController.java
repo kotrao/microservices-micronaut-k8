@@ -3,7 +3,7 @@ package io.apptor;
 import io.micronaut.discovery.DiscoveryClient;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.kubernetes.client.v1.KubernetesClient;
+import io.micronaut.kubernetes.client.rxjava2.CoreV1ApiRxClient;
 import org.reactivestreams.Publisher;
 
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.List;
 @Controller("/test")
 public class TestController {
     private final DiscoveryClient discoveryClient;
-    private final KubernetesClient client;
+    private final CoreV1ApiRxClient client;
 
 
-    public TestController(KubernetesClient client, DiscoveryClient discoveryClient) {
+    public TestController(CoreV1ApiRxClient client, DiscoveryClient discoveryClient) {
         this.client = client;
         this.discoveryClient = discoveryClient;
     }

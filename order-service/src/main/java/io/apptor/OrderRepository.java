@@ -1,7 +1,8 @@
 package io.apptor;
 
+import jakarta.inject.Singleton;
+
 import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

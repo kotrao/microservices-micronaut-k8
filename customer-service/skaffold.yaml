@@ -1,9 +1,9 @@
-apiVersion: skaffold/v2beta10
+apiVersion: skaffold/v2beta23
 kind: Config
 build:
   artifacts:
-    - image: micronauttest/customersvc
-      context: .
-      jib: {}
+  - image: micronauttest/customersvc
+    context: .
+    jib: {}
   tagPolicy:
     gitCommit: {}
