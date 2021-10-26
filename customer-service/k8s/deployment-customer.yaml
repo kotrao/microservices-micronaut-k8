@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: customersvc-deployment
+  namespace: apptordev
   labels:
     app: customersvc
 spec:
@@ -20,11 +21,13 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
+      serviceAccountName: apptor-sa
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: customersvc
+  namespace: apptordev
 spec:
   type: NodePort
   selector:
@@ -33,4 +36,3 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30007

@@ -1,6 +1,13 @@
 micronaut:
   server:
     port: 8080
+  http:
+    client:
+      read-timeout: 100s
+    services:
+      productsvc:
+        url: http://localhost:8081
+
   application:
     name: customer-service
 jackson:
