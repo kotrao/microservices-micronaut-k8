@@ -7,3 +7,8 @@ build:
     jib: {}
   tagPolicy:
     gitCommit: {}
+portForward:
+  - resourceType: service
+    resourceName: customersvc
+    port: 8080
+    localPort: 8080

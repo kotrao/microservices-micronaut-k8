@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ordersvc-deployment
-  namespace: apptordev
   labels:
     app: ordersvc
 spec:
@@ -21,14 +20,12 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8081
-      serviceAccountName: apptor-sa
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ordersvc
-  namespace: apptordev
 spec:
   type: NodePort
   selector:
@@ -37,4 +34,3 @@ spec:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-#      nodePort: 30008
